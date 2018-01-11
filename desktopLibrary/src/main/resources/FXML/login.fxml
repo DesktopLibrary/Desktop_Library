@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane fx:id="rootPane" prefHeight="400.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.controllers.LoginController">
+   <children>
+      <TextField fx:id="username" layoutX="152.0" layoutY="127.0" />
+      <Button layoutX="165.0" layoutY="240.0" mnemonicParsing="false" onAction="#loginButtonClicked" text="Login">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Button>
+      <Label layoutX="70.0" layoutY="130.0" text="Username:">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <Label layoutX="74.0" layoutY="180.0" text="Password:">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <Button layoutX="246.0" layoutY="240.0" mnemonicParsing="false" onAction="#backToEntryClicked" text="Back">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Button>
+      <Label fx:id="errorLabel" layoutX="60.0" layoutY="71.0" prefHeight="20.0" prefWidth="320.0" textFill="#ee0202">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </Label>
+      <PasswordField fx:id="password" layoutX="152.0" layoutY="178.0" />
+   </children>
+</AnchorPane>
