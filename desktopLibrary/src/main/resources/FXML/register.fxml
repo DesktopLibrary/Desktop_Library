@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+
+<AnchorPane fx:id="rootPane" prefHeight="400.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.controllers.RegisterController">
+   <children>
+      <Text layoutX="168.0" layoutY="91.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Register" textAlignment="CENTER">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Text>
+      <PasswordField fx:id="passwordField" layoutX="152.0" layoutY="203.0" />
+      <PasswordField fx:id="confirmPasswordField" layoutX="152.0" layoutY="243.0" />
+      <TextField fx:id="emailField" layoutX="152.0" layoutY="161.0" />
+      <TextField fx:id="usernameField" layoutX="152.0" layoutY="119.0" />
+      <Button layoutX="138.0" layoutY="301.0" mnemonicParsing="false" onAction="#regButtonClicked" text="Register">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Button>
+      <Label layoutX="68.0" layoutY="122.0" text="Username:" AnchorPane.rightAnchor="271.0">
+         <font>
+            <Font size="13.0" />
+         </font>
+      </Label>
+      <Label layoutX="95.0" layoutY="164.0" text="Email:" AnchorPane.rightAnchor="271.0">
+         <font>
+            <Font size="13.0" />
+         </font>
+      </Label>
+      <Label layoutX="72.0" layoutY="206.0" text="Password:" AnchorPane.rightAnchor="271.0">
+         <font>
+            <Font size="13.0" />
+         </font>
+      </Label>
+      <Label layoutX="22.0" layoutY="247.0" text="Confirm password:" AnchorPane.rightAnchor="271.0">
+         <font>
+            <Font size="13.0" />
+         </font>
+      </Label>
+      <Button layoutX="251.0" layoutY="301.0" mnemonicParsing="false" onAction="#backButtonClicked" text="Back">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Button>
+      <Label fx:id="errorLabel" alignment="CENTER" layoutX="7.0" layoutY="39.0" prefHeight="17.0" prefWidth="385.0" textAlignment="CENTER" textFill="#f50303">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>
