@@ -1,10 +1,10 @@
-package sample.services.impl;
+package library.services.impl;
 
-import sample.dataBroker.DataBroker;
+import library.dataBroker.DataBroker;
 
-import sample.dataBroker.DataBrokerImpl;
-import sample.entities.User;
-import sample.services.api.UserService;
+import library.dataBroker.DataBrokerImpl;
+import library.entities.User;
+import library.services.api.UserService;
 
 import java.util.List;
 

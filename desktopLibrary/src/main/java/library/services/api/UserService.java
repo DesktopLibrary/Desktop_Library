@@ -1,6 +1,6 @@
-package sample.services.api;
+package library.services.api;
 
-import sample.entities.User;
+import library.entities.User;
 
 import java.util.List;
 

@@ -1,9 +1,9 @@
-package sample.services.impl;
+package library.services.impl;
 
-import sample.dataBroker.DataBroker;
-import sample.dataBroker.DataBrokerImpl;
-import sample.entities.Book;
-import sample.services.api.BookService;
+import library.dataBroker.DataBroker;
+import library.dataBroker.DataBrokerImpl;
+import library.entities.Book;
+import library.services.api.BookService;
 
 import java.util.List;
 
