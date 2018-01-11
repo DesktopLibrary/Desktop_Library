@@ -15,7 +15,7 @@ public class Manager {
         if(em != null){
             return em;
         }else{
-            emf = Persistence.createEntityManagerFactory("lib_demo");
+            emf = Persistence.createEntityManagerFactory("library_db");
             em = emf.createEntityManager();
             return em;
         }
