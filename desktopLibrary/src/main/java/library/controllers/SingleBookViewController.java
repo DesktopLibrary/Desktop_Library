@@ -44,7 +44,7 @@ public class SingleBookViewController {
         this.rootPane.getChildren().setAll(root);
     }
 
-    public void initData(User user,Book selectedItem) {
+    public void initData(User user, Book selectedItem) {
         this.user = user;
         this.selectedItem = selectedItem;
         titleTextField.setEditable(false);
@@ -60,7 +60,10 @@ public class SingleBookViewController {
         summaryTextField.setFocusTraversable(false);
         summaryTextField.setText(selectedItem.getSummary());
         String imagePath = System.getProperty("user.dir") + "\\src\\main\\resources\\book_images\\";
-        File file = new File(imagePath+selectedItem.getPicture());
+        File file = new File(imagePath + "no-image.jpg");
+        if (selectedItem.getPicture() != null) {
+            file = new File(imagePath + selectedItem.getPicture());
+        }
         Image image = new Image(file.toURI().toString());
         pictureSpace.setImage(image);
     }
