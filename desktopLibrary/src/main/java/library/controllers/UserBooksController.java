@@ -11,12 +11,11 @@ import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableView;
 import javafx.scene.layout.AnchorPane;
-<<<<<<< HEAD
+
 import javafx.scene.layout.Pane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-=======
->>>>>>> c4d5987e21f2c17f044c015316863fa4ae9b3111
+
 import library.entities.Book;
 import library.entities.User;
 import library.services.api.BookService;
@@ -38,13 +37,12 @@ public class UserBooksController implements Initializable {
     private Label errorLabel;
     @FXML
     private AnchorPane rootPane;
-<<<<<<< HEAD
-=======
+
 
     private User user;
     private UserService userService;
     private BookService bookService;
->>>>>>> c4d5987e21f2c17f044c015316863fa4ae9b3111
+
 
     @FXML
     void deleteButtonClicked() {
