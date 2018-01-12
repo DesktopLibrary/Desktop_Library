@@ -31,7 +31,7 @@ public final class ImageUpload {
     }
 
 
-    public static String saveToFile(String outputPath, Window stage) throws IOException {
+    public static String saveToFile(String outputPath, Window stage) {
         File file = fileChooser.showOpenDialog(stage);
         String imagePath = file.toURI().toString();
         Image image = new Image(imagePath);

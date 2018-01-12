@@ -4,6 +4,7 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 import library.dataBroker.Manager;
 import library.utilities.ConfirmBox;
@@ -23,7 +24,9 @@ public class Main extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception {
         Parent root = FXMLLoader.load(getClass().getResource("/FXML/entry.fxml"));
+        root.setFocusTraversable(true);
         this.primaryStage = primaryStage;
+        primaryStage.getIcons().add(new Image("iconsAndWallpapers/icon.jpg"));
         primaryStage.setTitle("DesktopLibrary");
         primaryStage.setOnCloseRequest(e -> {
             e.consume();

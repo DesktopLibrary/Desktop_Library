@@ -1,6 +1,7 @@
 package library.utilities;
 
 
+import javafx.scene.image.Image;
 import javafx.stage.*;
 import javafx.scene.*;
 import javafx.scene.layout.*;
@@ -15,6 +16,7 @@ public class ConfirmBox {
         Stage window = new Stage();
         window.initModality(Modality.APPLICATION_MODAL);
         window.setTitle(title);
+        window.getIcons().add(new Image("iconsAndWallpapers/sad-face-e.jpg"));
         window.setMinWidth(300);
         window.setMinHeight(200);
         Label label = new Label();
