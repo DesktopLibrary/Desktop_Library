@@ -15,10 +15,10 @@
             <Font size="18.0" />
          </font>
       </Text>
+      <TextField fx:id="usernameField" layoutX="152.0" layoutY="119.0" />
+      <TextField fx:id="emailField" layoutX="152.0" layoutY="161.0" />
       <PasswordField fx:id="passwordField" layoutX="152.0" layoutY="203.0" />
       <PasswordField fx:id="confirmPasswordField" layoutX="152.0" layoutY="243.0" />
-      <TextField fx:id="emailField" layoutX="152.0" layoutY="161.0" />
-      <TextField fx:id="usernameField" layoutX="152.0" layoutY="119.0" />
       <Button layoutX="152.0" layoutY="301.0" mnemonicParsing="false" onAction="#regButtonClicked" text="Register">
          <font>
             <Font name="System Bold" size="16.0" />

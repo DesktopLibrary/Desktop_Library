@@ -26,7 +26,7 @@ public class Main extends Application {
         Parent root = FXMLLoader.load(getClass().getResource("/FXML/entry.fxml"));
         root.setFocusTraversable(true);
         this.primaryStage = primaryStage;
-        primaryStage.getIcons().add(new Image("iconsAndWallpapers/icon.jpg"));
+        primaryStage.getIcons().add(new Image("iconsAndWallpapers/icon.png"));
         primaryStage.setTitle("DesktopLibrary");
         primaryStage.setOnCloseRequest(e -> {
             e.consume();

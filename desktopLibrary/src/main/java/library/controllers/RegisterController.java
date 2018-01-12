@@ -37,15 +37,31 @@ public class RegisterController implements Initializable {
     public void regButtonClicked() throws IOException {
         if (this.userService.getAllUsers().stream().filter(u -> u.getUsername().equals(usernameField.getText())).count() > 0) {
             this.errorLabel.setText("This username is already taken!");
+            return;
         }
         if (!this.passwordField.getText().equals(this.confirmPasswordField.getText())) {
             this.errorLabel.setText("Passwords don't match!");
+            return;
         }
         if (this.userService.getAllUsers().stream().filter(u -> u.getEmail().equals(emailField.getText())).count() > 0) {
             this.errorLabel.setText("There is already registered user with this email");
+            return;
+        }
+        if (this.usernameField.getText().equals("")) {
+            this.errorLabel.setText("Username cannot be empty");
+            return;
+        }
+        if (this.passwordField.getText().equals("")) {
+            this.errorLabel.setText("Password cannot be empty");
+            return;
+        }
+        if (this.emailField.getText().equals("")) {
+            this.errorLabel.setText("Email cannot be empty");
+            return;
         }
 
         User user = new User(this.usernameField.getText(), this.passwordField.getText(), this.emailField.getText());
+
         this.userService.saveOrUpdate(user);
         GridPane entryScene = FXMLLoader.load(getClass().getResource("/FXML/entry.fxml"));
         this.rootPane.getChildren().setAll(entryScene);

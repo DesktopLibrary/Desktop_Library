@@ -31,16 +31,16 @@
             <Font name="System Italic" size="16.0" />
          </font>
       </Button>
-      <Label fx:id="errorLabel" layoutX="8.0" layoutY="44.0" prefHeight="20.0" prefWidth="382.0" textAlignment="CENTER" textFill="#ee0202">
-         <font>
-            <Font name="System Bold" size="14.0" />
-         </font>
-      </Label>
       <PasswordField fx:id="password" layoutX="152.0" layoutY="178.0" />
       <Text layoutX="172.0" layoutY="101.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Login" textAlignment="CENTER">
          <font>
             <Font size="18.0" />
          </font>
       </Text>
+      <Label fx:id="errorLabel" alignment="CENTER" layoutX="8.0" layoutY="52.0" prefHeight="17.0" prefWidth="385.0" textAlignment="CENTER" textFill="#f50303">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>

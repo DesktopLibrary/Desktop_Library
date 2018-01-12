@@ -38,11 +38,13 @@ public class UserBooksController implements Initializable {
     void deleteButtonClicked() {
         Book selectedItem = table.getSelectionModel().getSelectedItem();
         if (selectedItem != null) {
-            Boolean confirmation = ConfirmBox.display("DeleteBook", "Nedei la, ni ma trii!!!");
+            Boolean confirmation = ConfirmBox.display("DeleteBook", "Would you like to delete this book?");
             if (confirmation) {
                 table.getItems().remove(selectedItem);
                 this.bookService.deleteBookById(selectedItem);
             }
+        } else {
+            errorLabel.setText("Please select a book.");
         }
     }
 
