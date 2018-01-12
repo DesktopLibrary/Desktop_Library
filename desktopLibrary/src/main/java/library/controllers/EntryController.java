@@ -7,8 +7,7 @@ import javafx.scene.layout.GridPane;
 
 import java.io.IOException;
 
-
-public class EntryController{
+public class EntryController {
 
     @FXML
     private GridPane rootPane;

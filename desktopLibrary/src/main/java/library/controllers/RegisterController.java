@@ -18,8 +18,6 @@ import java.util.ResourceBundle;
 
 public class RegisterController implements Initializable {
 
-    private UserService userService;
-
     @FXML
     private AnchorPane rootPane;
     @FXML
@@ -33,20 +31,37 @@ public class RegisterController implements Initializable {
     @FXML
     private TextField emailField;
 
+    private UserService userService;
 
     @FXML
     public void regButtonClicked() throws IOException {
         if (this.userService.getAllUsers().stream().filter(u -> u.getUsername().equals(usernameField.getText())).count() > 0) {
             this.errorLabel.setText("This username is already taken!");
+            return;
         }
         if (!this.passwordField.getText().equals(this.confirmPasswordField.getText())) {
             this.errorLabel.setText("Passwords don't match!");
+            return;
         }
         if (this.userService.getAllUsers().stream().filter(u -> u.getEmail().equals(emailField.getText())).count() > 0) {
             this.errorLabel.setText("There is already registered user with this email");
+            return;
+        }
+        if (this.usernameField.getText().equals("")) {
+            this.errorLabel.setText("Username cannot be empty");
+            return;
+        }
+        if (this.passwordField.getText().equals("")) {
+            this.errorLabel.setText("Password cannot be empty");
+            return;
+        }
+        if (this.emailField.getText().equals("")) {
+            this.errorLabel.setText("Email cannot be empty");
+            return;
         }
 
         User user = new User(this.usernameField.getText(), this.passwordField.getText(), this.emailField.getText());
+
         this.userService.saveOrUpdate(user);
         GridPane entryScene = FXMLLoader.load(getClass().getResource("/FXML/entry.fxml"));
         this.rootPane.getChildren().setAll(entryScene);
@@ -57,7 +72,6 @@ public class RegisterController implements Initializable {
         GridPane entryScene = FXMLLoader.load(getClass().getResource("/FXML/entry.fxml"));
         this.rootPane.getChildren().setAll(entryScene);
     }
-
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {

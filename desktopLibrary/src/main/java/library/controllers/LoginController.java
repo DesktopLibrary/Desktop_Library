@@ -31,8 +31,8 @@ public class LoginController implements Initializable {
 
     @FXML
     public void loginButtonClicked() throws IOException {
-        if(this.userService.userLogin(this.username.getText(), this.password.getText())== null){
-            this.errorLabel.setText("There is no such user in the database!");
+        if (this.userService.userLogin(this.username.getText(), this.password.getText()) == null) {
+            this.errorLabel.setText("Incorrect username or password!");
         }
 
         User user = this.userService.userLogin(this.username.getText(), this.password.getText());

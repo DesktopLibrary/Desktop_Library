@@ -6,7 +6,6 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
-import library.Main;
 import library.entities.User;
 import library.services.api.BookService;
 import library.services.api.UserService;
@@ -19,14 +18,14 @@ import java.util.ResourceBundle;
 
 public class MenuController implements Initializable {
 
-    private UserService userService;
-    private BookService bookService;
-    private User user;
-
     @FXML
     private AnchorPane rootPane;
     @FXML
     private Label loggedName;
+
+    private UserService userService;
+    private BookService bookService;
+    private User user;
 
     @FXML
     public void viewBooksClicked() throws IOException {
@@ -41,7 +40,7 @@ public class MenuController implements Initializable {
 
     @FXML
     public void editProfileClicked() {
-        
+
     }
 
     @FXML
@@ -67,8 +66,8 @@ public class MenuController implements Initializable {
         this.userService = new UserServiceImpl();
     }
 
-    public  void initData(User user){
+    public void initData(User user) {
         this.user = user;
-        this.loggedName.setText("Hello, " + this.user.getUsername());
+        this.loggedName.setText("Welcome, " + this.user.getUsername() + "!");
     }
 }
