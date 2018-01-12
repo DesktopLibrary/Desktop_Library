@@ -5,6 +5,8 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.GridPane;
+import library.Main;
 import library.entities.User;
 import library.services.api.BookService;
 import library.services.api.UserService;
@@ -54,15 +56,15 @@ public class MenuController implements Initializable {
     }
 
     @FXML
-    void exitClicked() {
-
+    void exitClicked() throws IOException {
+        GridPane entryScene = FXMLLoader.load(getClass().getResource("/FXML/entry.fxml"));
+        this.rootPane.getChildren().setAll(entryScene);
     }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         this.bookService = new BookServiceImpl();
         this.userService = new UserServiceImpl();
-
     }
 
     public  void initData(User user){
