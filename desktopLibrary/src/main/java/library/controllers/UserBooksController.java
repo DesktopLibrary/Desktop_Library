@@ -30,7 +30,6 @@ public class UserBooksController implements Initializable {
     @FXML
     private AnchorPane rootPane;
 
-
     private User user;
     private UserService userService;
     private BookService bookService;

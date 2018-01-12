@@ -11,6 +11,7 @@
 <AnchorPane fx:id="rootPane" prefHeight="400.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="library.controllers.LoginController">
    <children>
       <TextField fx:id="username" layoutX="152.0" layoutY="127.0" />
+      <PasswordField fx:id="password" layoutX="152.0" layoutY="178.0" />
       <Button layoutX="152.0" layoutY="233.0" mnemonicParsing="false" onAction="#loginButtonClicked" prefHeight="37.0" prefWidth="84.0" text="Login">
          <font>
             <Font name="System Bold" size="16.0" />
@@ -31,7 +32,6 @@
             <Font name="System Italic" size="16.0" />
          </font>
       </Button>
-      <PasswordField fx:id="password" layoutX="152.0" layoutY="178.0" />
       <Text layoutX="172.0" layoutY="101.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Login" textAlignment="CENTER">
          <font>
             <Font size="18.0" />
