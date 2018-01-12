@@ -9,7 +9,6 @@ import java.util.List;
 
 public class DataBrokerImpl implements DataBroker {
 
-
     private EntityManager em;
 
     public DataBrokerImpl() {
