@@ -32,13 +32,12 @@ public final class ImageUpload {
 
     public static String saveToFile(String outputPath, Window stage) {
         File file = fileChooser.showOpenDialog(stage);
-        String imagePath = file.toURI().toString();
-        Image image = new Image(imagePath);
-
-        BufferedImage bImage = SwingFXUtils.fromFXImage(image, null);
-
 
         if (file != null) {
+            String imagePath = file.toURI().toString();
+            Image image = new Image(imagePath);
+
+            BufferedImage bImage = SwingFXUtils.fromFXImage(image, null);
 
             String fileName = file.getName();
             String fileExtension = fileName.substring(fileName.indexOf(".") + 1, file.getName().length());
