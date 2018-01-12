@@ -70,5 +70,4 @@ public class UserBooksController implements Initializable {
         ObservableList<Book> observableList = FXCollections.observableList(booksByUser);
         this.table.setItems(observableList);
     }
-
 }

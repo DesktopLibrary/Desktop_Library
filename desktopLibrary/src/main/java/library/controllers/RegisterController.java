@@ -35,7 +35,7 @@ public class RegisterController implements Initializable {
 
 
     @FXML
-    public void regButtonClicked() {
+    public void regButtonClicked() throws IOException {
         if (this.userService.getAllUsers().stream().filter(u -> u.getUsername().equals(usernameField.getText())).count() > 0) {
             this.errorLabel.setText("This username is already taken!");
         }
@@ -48,6 +48,8 @@ public class RegisterController implements Initializable {
 
         User user = new User(this.usernameField.getText(), this.passwordField.getText(), this.emailField.getText());
         this.userService.saveOrUpdate(user);
+        GridPane entryScene = FXMLLoader.load(getClass().getResource("/FXML/entry.fxml"));
+        this.rootPane.getChildren().setAll(entryScene);
     }
 
     @FXML
