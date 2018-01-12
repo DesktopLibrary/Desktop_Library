@@ -52,7 +52,7 @@ public class UserBooksController implements Initializable {
     @FXML
     void editButtonClicked() throws IOException {
         Book selectedItem = table.getSelectionModel().getSelectedItem();
-        if(selectedItem != null){
+        if (selectedItem != null) {
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/FXML/editBook.fxml"));
 
             AnchorPane root = fxmlLoader.load();
@@ -60,7 +60,7 @@ public class UserBooksController implements Initializable {
             controller.initData(this.user, selectedItem);
 
             this.rootPane.getChildren().setAll(root);
-        }else {
+        } else {
             this.errorLabel.setText("Please select book first!");
         }
     }
@@ -86,7 +86,7 @@ public class UserBooksController implements Initializable {
 
         AnchorPane root = fxmlLoader.load();
         SingleBookViewController controller = fxmlLoader.<SingleBookViewController>getController();
-        controller.initData(selectedItem);
+        controller.initData(this.user, selectedItem);
 
         this.rootPane.getChildren().setAll(root);
     }

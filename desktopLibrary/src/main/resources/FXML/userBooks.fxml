@@ -8,51 +8,45 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="rootPane" prefHeight="400.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/8.0.121"
-            xmlns:fx="http://javafx.com/fxml/1" fx:controller="library.controllers.UserBooksController">
+<AnchorPane fx:id="rootPane" prefHeight="400.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="library.controllers.UserBooksController">
     <children>
-        <Button layoutX="14.0" layoutY="361.0" mnemonicParsing="false" onAction="#descriptionButtonClicked"
-                prefHeight="30.0" prefWidth="96.0" text="Description">
+        <Button layoutX="14.0" layoutY="361.0" mnemonicParsing="false" onAction="#descriptionButtonClicked" prefHeight="30.0" prefWidth="96.0" text="Description">
             <font>
-                <Font name="System Bold" size="14.0"/>
+                <Font name="System Bold" size="14.0" />
             </font>
         </Button>
-        <Button layoutX="130.0" layoutY="361.0" mnemonicParsing="false" onAction="#editButtonClicked" prefHeight="25.0"
-                prefWidth="49.0" text="Edit">
+        <Button layoutX="130.0" layoutY="361.0" mnemonicParsing="false" onAction="#editButtonClicked" prefHeight="25.0" prefWidth="49.0" text="Edit">
             <font>
-                <Font name="System Bold" size="14.0"/>
+                <Font name="System Bold" size="14.0" />
             </font>
         </Button>
-        <Button layoutX="201.0" layoutY="361.0" mnemonicParsing="false" onAction="#deleteButtonClicked"
-                prefHeight="25.0" prefWidth="67.0" text="Delete">
+        <Button layoutX="201.0" layoutY="361.0" mnemonicParsing="false" onAction="#deleteButtonClicked" prefHeight="25.0" prefWidth="67.0" text="Delete">
             <font>
-                <Font name="System Bold" size="14.0"/>
+                <Font name="System Bold" size="14.0" />
             </font>
         </Button>
         <TableView fx:id="table" layoutY="33.0" prefHeight="313.0" prefWidth="401.0">
             <columns>
                 <TableColumn prefWidth="193.0" text="Author">
                     <cellValueFactory>
-                        <PropertyValueFactory property="author"/>
+                        <PropertyValueFactory property="author" />
                     </cellValueFactory>
                 </TableColumn>
                 <TableColumn prefWidth="193.0" text="Title">
                     <cellValueFactory>
-                        <PropertyValueFactory property="title"/>
+                        <PropertyValueFactory property="title" />
                     </cellValueFactory>
                 </TableColumn>
             </columns>
         </TableView>
-        <Label fx:id="errorLabel" alignment="CENTER" layoutX="7.0" layoutY="4.0" prefHeight="20.0" prefWidth="387.0"
-               textFill="#fc0202" AnchorPane.topAnchor="8.0">
+        <Label fx:id="errorLabel" alignment="CENTER" layoutX="7.0" layoutY="4.0" prefHeight="20.0" prefWidth="387.0" textFill="#fc0202" AnchorPane.topAnchor="8.0">
             <font>
-                <Font name="System Bold" size="14.0"/>
+                <Font name="System Bold" size="14.0" />
             </font>
         </Label>
-        <Button layoutX="338.0" layoutY="361.0" mnemonicParsing="false" onAction="#backToMainMenuClicked"
-                prefHeight="25.0" prefWidth="49.0" text="Back">
+        <Button layoutX="338.0" layoutY="361.0" mnemonicParsing="false" onAction="#backToMainMenuClicked" prefHeight="25.0" prefWidth="49.0" text="Back">
             <font>
-                <Font name="System Italic" size="14.0"/>
+                <Font name="System Italic" size="14.0" />
             </font>
         </Button>
     </children>
