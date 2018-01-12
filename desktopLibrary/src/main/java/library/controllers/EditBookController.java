@@ -40,7 +40,6 @@ public class EditBookController implements Initializable {
 
     @FXML
     void editButtonClicked() throws IOException {
-
         String titleString = this.titleField.getText();
         String authorString = this.authorField.getText();
         String summaryString = this.summaryField.getText();

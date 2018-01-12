@@ -5,17 +5,9 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.fxml.JavaFXBuilderFactory;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableView;
 import javafx.scene.layout.AnchorPane;
-
-import javafx.scene.layout.Pane;
-import javafx.stage.Modality;
-import javafx.stage.Stage;
-
 import library.entities.Book;
 import library.entities.User;
 import library.services.api.BookService;
@@ -87,6 +79,10 @@ public class UserBooksController implements Initializable {
     @FXML
     void descriptionButtonClicked() throws IOException {
         Book selectedItem = table.getSelectionModel().getSelectedItem();
+        if (selectedItem == null) {
+            this.errorLabel.setText("Please select a book");
+            return;
+        }
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/FXML/singleBookView.fxml"));
 
         AnchorPane root = fxmlLoader.load();
