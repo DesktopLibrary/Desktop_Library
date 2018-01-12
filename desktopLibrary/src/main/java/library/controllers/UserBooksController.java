@@ -34,6 +34,7 @@ public class UserBooksController implements Initializable {
     private UserService userService;
     private BookService bookService;
 
+
     @FXML
     void deleteButtonClicked() {
         Book selectedItem = table.getSelectionModel().getSelectedItem();
@@ -75,8 +76,19 @@ public class UserBooksController implements Initializable {
     }
 
     @FXML
-    void descriptionButtonClicked() {
+    void descriptionButtonClicked() throws IOException {
+        Book selectedItem = table.getSelectionModel().getSelectedItem();
+        if (selectedItem == null) {
+            this.errorLabel.setText("Please select a book");
+            return;
+        }
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/FXML/singleBookView.fxml"));
 
+        AnchorPane root = fxmlLoader.load();
+        SingleBookViewController controller = fxmlLoader.<SingleBookViewController>getController();
+        controller.initData(selectedItem);
+
+        this.rootPane.getChildren().setAll(root);
     }
 
     @Override

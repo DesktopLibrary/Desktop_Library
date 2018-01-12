@@ -12,12 +12,16 @@ import library.utilities.ConfirmBox;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import java.lang.reflect.Field;
+import java.util.logging.Level;
 
 public class Main extends Application {
 
     private Stage primaryStage;
 
     public static void main(String[] args) {
+        @SuppressWarnings("unused")
+        org.jboss.logging.Logger logger = org.jboss.logging.Logger.getLogger("org.hibernate");
+        java.util.logging.Logger.getLogger("org.hibernate").setLevel(Level.SEVERE);
         launch(args);
     }
 
