@@ -44,4 +44,9 @@ public class BookServiceImpl implements BookService {
     public Book getBookByAuthor(String author) {
         return this.broker.getBookByAuthor(author);
     }
+
+    @Override
+    public void deleteBookById(Book book) {
+        this.broker.deleteBookById(book);
+    }
 }

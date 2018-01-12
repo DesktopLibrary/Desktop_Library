@@ -23,19 +23,14 @@ public class AddBookController implements Initializable {
 
     @FXML
     private AnchorPane rootPane;
-
     @FXML
     private Label errorLabel;
-
     @FXML
     private Button uploadImageButton;
-
     @FXML
     private TextArea summary;
-
     @FXML
     private TextField author;
-
     @FXML
     private TextField title;
 
@@ -70,7 +65,6 @@ public class AddBookController implements Initializable {
 
         this.bookService.saveOrUpdate(this.book);
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/FXML/menu.fxml"));
-
         AnchorPane root = fxmlLoader.load();
         MenuController controller = fxmlLoader.<MenuController>getController();
         controller.initData(user);

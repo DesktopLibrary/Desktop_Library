@@ -19,4 +19,5 @@ public interface DataBroker {
     Book getBookById(long id);
     Book getBookByTitle(String title);
     Book getBookByAuthor(String author);
+    void deleteBookById(Book book);
 }

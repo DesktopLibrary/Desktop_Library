@@ -41,7 +41,7 @@ public class MenuController implements Initializable {
 
     @FXML
     public void editProfileClicked() {
-        
+
     }
 
     @FXML
@@ -67,7 +67,7 @@ public class MenuController implements Initializable {
         this.userService = new UserServiceImpl();
     }
 
-    public  void initData(User user){
+    public void initData(User user) {
         this.user = user;
         this.loggedName.setText("Hello, " + this.user.getUsername());
     }

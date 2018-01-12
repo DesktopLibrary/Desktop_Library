@@ -126,4 +126,11 @@ public class DataBrokerImpl implements DataBroker {
         }
         return books.get(0);
     }
+
+    @Override
+    public void deleteBookById(Book book) {
+        em.getTransaction().begin();
+        em.remove(book);
+        em.getTransaction().commit();
+    }
 }

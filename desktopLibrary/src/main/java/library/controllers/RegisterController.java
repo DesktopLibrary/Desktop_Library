@@ -33,7 +33,6 @@ public class RegisterController implements Initializable {
     @FXML
     private TextField emailField;
 
-
     @FXML
     public void regButtonClicked() throws IOException {
         if (this.userService.getAllUsers().stream().filter(u -> u.getUsername().equals(usernameField.getText())).count() > 0) {
@@ -57,7 +56,6 @@ public class RegisterController implements Initializable {
         GridPane entryScene = FXMLLoader.load(getClass().getResource("/FXML/entry.fxml"));
         this.rootPane.getChildren().setAll(entryScene);
     }
-
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
