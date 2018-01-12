@@ -39,8 +39,14 @@ public class MenuController implements Initializable {
     }
 
     @FXML
-    public void editProfileClicked() {
+    public void editProfileClicked() throws IOException {
+        FXMLLoader editProfileLoader = new FXMLLoader(getClass().getResource("/FXML/editProfile.fxml"));
 
+        AnchorPane root = editProfileLoader.load();
+        EditProfileController controller = editProfileLoader.<EditProfileController>getController();
+        controller.initData(this.user);
+
+        this.rootPane.getChildren().setAll(root);
     }
 
     @FXML
