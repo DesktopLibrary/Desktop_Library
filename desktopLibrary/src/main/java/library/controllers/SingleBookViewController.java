@@ -3,6 +3,7 @@ package library.controllers;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.TextArea;
+import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
@@ -17,13 +18,13 @@ public class SingleBookViewController {
     @FXML
     public AnchorPane rootPane;
     @FXML
-    private TextArea titleTextField;
+    private TextField titleTextField;
     @FXML
     private ImageView pictureSpace;
     @FXML
-    private TextArea sumaryTextField;
+    private TextArea summaryTextField;
     @FXML
-    private TextArea authorTextField;
+    private TextField authorTextField;
 
     private User user;
     private Book selectedItem;
@@ -46,9 +47,18 @@ public class SingleBookViewController {
     public void initData(User user,Book selectedItem) {
         this.user = user;
         this.selectedItem = selectedItem;
+        titleTextField.setEditable(false);
+        titleTextField.setMouseTransparent(true);
+        titleTextField.setFocusTraversable(false);
         titleTextField.setText(selectedItem.getTitle());
+        authorTextField.setEditable(false);
+        authorTextField.setMouseTransparent(true);
+        authorTextField.setFocusTraversable(false);
         authorTextField.setText(selectedItem.getAuthor());
-        sumaryTextField.setText(selectedItem.getSummary());
+        summaryTextField.setEditable(false);
+        summaryTextField.setMouseTransparent(true);
+        summaryTextField.setFocusTraversable(false);
+        summaryTextField.setText(selectedItem.getSummary());
         String imagePath = System.getProperty("user.dir") + "\\src\\main\\resources\\book_images\\";
         File file = new File(imagePath+selectedItem.getPicture());
         Image image = new Image(file.toURI().toString());
