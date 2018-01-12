@@ -18,8 +18,6 @@ import java.util.ResourceBundle;
 
 public class RegisterController implements Initializable {
 
-    private UserService userService;
-
     @FXML
     private AnchorPane rootPane;
     @FXML
@@ -32,6 +30,8 @@ public class RegisterController implements Initializable {
     private PasswordField confirmPasswordField;
     @FXML
     private TextField emailField;
+
+    private UserService userService;
 
     @FXML
     public void regButtonClicked() throws IOException {

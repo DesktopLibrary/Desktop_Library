@@ -18,19 +18,19 @@
     <children>
         <AnchorPane>
             <children>
-                <Label layoutX="112.0" layoutY="131.0" prefHeight="50.0" prefWidth="161.0" text="My Library" textFill="#53a8db" AnchorPane.bottomAnchor="253.0" AnchorPane.leftAnchor="112.0" AnchorPane.rightAnchor="127.0" AnchorPane.topAnchor="131.0">
+                <Label layoutX="120.0" layoutY="118.0" prefHeight="50.0" prefWidth="161.0" text="My Library" textAlignment="CENTER" textFill="#53a8db" AnchorPane.bottomAnchor="266.0" AnchorPane.leftAnchor="120.0" AnchorPane.rightAnchor="119.0" AnchorPane.topAnchor="118.0">
                     <font>
                         <Font size="34.0" />
                     </font>
                 </Label>
-                <Button layoutX="93.0" layoutY="217.0" mnemonicParsing="false" onMousePressed="#loginButtonClicked" prefHeight="39.0" prefWidth="89.0" text="Login">
+                <Button layoutX="120.0" layoutY="217.0" mnemonicParsing="false" onMousePressed="#loginButtonClicked" prefHeight="39.0" prefWidth="161.0" text="Login">
                     <font>
-                        <Font size="18.0" />
+                        <Font name="Georgia" size="18.0" />
                     </font>
                 </Button>
-                <Button layoutX="200.0" layoutY="217.0" mnemonicParsing="false" onAction="#registerButtonClicked" text="Register">
+                <Button layoutX="120.0" layoutY="282.0" mnemonicParsing="false" onAction="#registerButtonClicked" prefHeight="39.0" prefWidth="161.0" text="Register">
                     <font>
-                        <Font size="18.0" />
+                        <Font name="Georgia" size="18.0" />
                     </font>
                 </Button>
             </children>

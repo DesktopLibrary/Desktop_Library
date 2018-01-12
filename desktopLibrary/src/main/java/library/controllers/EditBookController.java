@@ -18,26 +18,20 @@ import java.util.ResourceBundle;
 
 public class EditBookController implements Initializable {
 
+    @FXML
+    private AnchorPane rootPane;
+    @FXML
+    private TextField authorField;
+    @FXML
+    private TextField titleField;
+    @FXML
+    private TextArea summaryField;
+    @FXML
+    private Label errorLabel;
 
     private BookService bookService;
     private Book book;
     private User user;
-
-
-    @FXML
-    private AnchorPane rootPane;
-
-    @FXML
-    private TextField authorField;
-
-    @FXML
-    private TextField titleField;
-
-    @FXML
-    private TextArea summaryField;
-
-    @FXML
-    private Label errorLabel;
 
     @FXML
     void changeImageButtonClicked() {
@@ -77,6 +71,10 @@ public class EditBookController implements Initializable {
         this.rootPane.getChildren().setAll(root);
     }
 
+    @FXML
+    public void backToMainMenuClicked() throws IOException {
+        backToMyBooks();
+    }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -89,5 +87,14 @@ public class EditBookController implements Initializable {
         titleField.setText(book.getTitle());
         authorField.setText(book.getAuthor());
         summaryField.setText(book.getSummary());
+    }
+
+    private void backToMyBooks() throws IOException {
+        FXMLLoader booksLoader = new FXMLLoader(getClass().getResource("/FXML/userBooks.fxml"));
+        AnchorPane root = booksLoader.load();
+        UserBooksController controller = booksLoader.<UserBooksController>getController();
+        controller.initData(user);
+
+        this.rootPane.getChildren().setAll(root);
     }
 }

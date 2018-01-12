@@ -36,7 +36,6 @@ public class Main extends Application {
         primaryStage.show();
     }
 
-
     public void closeProgram() {
         Boolean confirmation = ConfirmBox.display("ExitWindow", "Do you really want to exit?");
         if (confirmation) {

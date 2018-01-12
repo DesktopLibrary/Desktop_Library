@@ -8,7 +8,6 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableView;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.GridPane;
 import library.entities.Book;
 import library.entities.User;
 import library.services.api.BookService;
@@ -24,10 +23,6 @@ import java.util.ResourceBundle;
 
 public class UserBooksController implements Initializable {
 
-    private User user;
-    private UserService userService;
-    private BookService bookService;
-
     @FXML
     private TableView<Book> table;
     @FXML
@@ -35,15 +30,9 @@ public class UserBooksController implements Initializable {
     @FXML
     private AnchorPane rootPane;
 
-    @FXML
-    void backToMainMenuClicked() throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/FXML/menu.fxml"));
-        AnchorPane root = fxmlLoader.load();
-        MenuController controller = fxmlLoader.<MenuController>getController();
-        controller.initData(user);
-
-        this.rootPane.getChildren().setAll(root);
-    }
+    private User user;
+    private UserService userService;
+    private BookService bookService;
 
     @FXML
     void deleteButtonClicked() {
@@ -71,8 +60,16 @@ public class UserBooksController implements Initializable {
         }else {
             this.errorLabel.setText("Please select book first!");
         }
+    }
 
+    @FXML
+    void backToMainMenuClicked() throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/FXML/menu.fxml"));
+        AnchorPane root = fxmlLoader.load();
+        MenuController controller = fxmlLoader.<MenuController>getController();
+        controller.initData(user);
 
+        this.rootPane.getChildren().setAll(root);
     }
 
     @FXML
