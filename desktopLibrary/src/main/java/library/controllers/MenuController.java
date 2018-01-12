@@ -41,7 +41,7 @@ public class MenuController implements Initializable {
 
     @FXML
     public void editProfileClicked() {
-
+        
     }
 
     @FXML

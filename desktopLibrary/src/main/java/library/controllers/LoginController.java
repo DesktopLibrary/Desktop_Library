@@ -43,7 +43,6 @@ public class LoginController implements Initializable {
         controller.initData(user);
 
         this.rootPane.getChildren().setAll(root);
-
     }
 
     @FXML

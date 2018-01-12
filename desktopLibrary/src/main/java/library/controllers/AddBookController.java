@@ -44,7 +44,7 @@ public class AddBookController implements Initializable {
     private BookService bookService;
 
     @FXML
-    public void submitButtonClicked() {
+    public void submitButtonClicked() throws IOException {
         String titleString = title.getText();
         String authorString = author.getText();
         String summaryString = summary.getText();
@@ -69,6 +69,13 @@ public class AddBookController implements Initializable {
         book.setUser(user);
 
         this.bookService.saveOrUpdate(this.book);
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/FXML/menu.fxml"));
+
+        AnchorPane root = fxmlLoader.load();
+        MenuController controller = fxmlLoader.<MenuController>getController();
+        controller.initData(user);
+
+        this.rootPane.getChildren().setAll(root);
     }
 
     public void uploadImage() throws IOException {
