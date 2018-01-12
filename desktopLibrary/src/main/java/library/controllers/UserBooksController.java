@@ -36,8 +36,12 @@ public class UserBooksController implements Initializable {
 
     @FXML
     void backToMainMenuClicked() throws IOException {
-        AnchorPane entryScene = FXMLLoader.load(getClass().getResource("/FXML/menu.fxml"));
-        this.rootPane.getChildren().setAll(entryScene);
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/FXML/menu.fxml"));
+        AnchorPane root = fxmlLoader.load();
+        MenuController controller = fxmlLoader.<MenuController>getController();
+        controller.initData(user);
+
+        this.rootPane.getChildren().setAll(root);
     }
 
     @FXML
