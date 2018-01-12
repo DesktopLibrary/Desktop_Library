@@ -3,9 +3,17 @@ package library.controllers;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.fxml.JavaFXBuilderFactory;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableView;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Pane;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
 import library.entities.Book;
 import library.entities.User;
 import library.services.api.BookService;
@@ -13,6 +21,7 @@ import library.services.api.UserService;
 import library.services.impl.BookServiceImpl;
 import library.services.impl.UserServiceImpl;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -27,6 +36,8 @@ public class UserBooksController implements Initializable {
     private TableView<Book> table;
     @FXML
     private Label errorLabel;
+    @FXML
+    private AnchorPane rootPane;
 
     @FXML
     void deleteButtonClicked() {
@@ -42,8 +53,15 @@ public class UserBooksController implements Initializable {
     }
 
     @FXML
-    void descriptionButtonClicked() {
+    void descriptionButtonClicked() throws IOException {
+        Book selectedItem = table.getSelectionModel().getSelectedItem();
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/FXML/singleBookView.fxml"));
 
+        AnchorPane root = fxmlLoader.load();
+        SingleBookViewController controller = fxmlLoader.<SingleBookViewController>getController();
+        controller.initData(selectedItem);
+
+        this.rootPane.getChildren().setAll(root);
     }
 
     @Override

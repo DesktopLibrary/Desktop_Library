@@ -1,24 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.cell.*?>
 <?import javafx.scene.text.*?>
 <?import java.lang.*?>
 <?import java.util.*?>
 <?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
-
-
 <?import javafx.scene.control.cell.PropertyValueFactory?>
-<AnchorPane prefHeight="400.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="library.controllers.UserBooksController">
+
+<AnchorPane fx:id="rootPane" prefHeight="400.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="library.controllers.UserBooksController">
    <children>
       <Button layoutX="325.0" layoutY="361.0" mnemonicParsing="false" onAction="#deleteButtonClicked" text="Delete" />
       <TableView fx:id="table" layoutY="33.0" prefHeight="313.0" prefWidth="401.0">
         <columns>
-          <TableColumn prefWidth="193.0" text="Author" >
+          <TableColumn prefWidth="193.0" text="Author">
             <cellValueFactory><PropertyValueFactory property="author" />
             </cellValueFactory>
           </TableColumn>
-          <TableColumn prefWidth="193.0" text="Title" >
+          <TableColumn prefWidth="193.0" text="Title">
             <cellValueFactory><PropertyValueFactory property="title" />
             </cellValueFactory>
         </TableColumn>
