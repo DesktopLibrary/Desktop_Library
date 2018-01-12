@@ -49,8 +49,8 @@ public class SingleBookViewController {
         titleTextField.setText(selectedItem.getTitle());
         authorTextField.setText(selectedItem.getAuthor());
         sumaryTextField.setText(selectedItem.getSummary());
-        String imagePath = System.getProperty("user.dir") + "\\src\\main\\resources\\book_images\\snimka.jpg";
-        File file = new File(imagePath);
+        String imagePath = System.getProperty("user.dir") + "\\src\\main\\resources\\book_images\\";
+        File file = new File(imagePath+selectedItem.getPicture());
         Image image = new Image(file.toURI().toString());
         pictureSpace.setImage(image);
     }
