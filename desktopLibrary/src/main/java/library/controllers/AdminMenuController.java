@@ -29,8 +29,14 @@ public class AdminMenuController {
 
 
     @FXML
-    private void allUsersClicked(){
+    private void allUsersClicked() throws IOException {
+        FXMLLoader usersLoader = new FXMLLoader(getClass().getResource("/FXML/allUsersView.fxml"));
 
+        AnchorPane root = usersLoader.load();
+        viewAllUsersAdminController controller = usersLoader.<viewAllUsersAdminController>getController();
+        controller.initData(user);
+
+        this.anchorPane.getChildren().setAll(root);
     }
 
     @FXML
