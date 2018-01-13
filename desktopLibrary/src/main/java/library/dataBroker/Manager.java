@@ -9,12 +9,12 @@ public class Manager {
     private static EntityManagerFactory emf;
     private static EntityManager em;
 
-    private Manager(){}
+    private Manager() {}
 
     public static EntityManager getInstance() {
-        if(em != null){
+        if (em != null) {
             return em;
-        }else{
+        } else {
             emf = Persistence.createEntityManagerFactory("library_db");
             em = emf.createEntityManager();
             return em;

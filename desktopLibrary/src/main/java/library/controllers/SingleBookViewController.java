@@ -10,8 +10,12 @@ import javafx.scene.layout.AnchorPane;
 import library.entities.Book;
 import library.entities.User;
 
+import java.awt.*;
 import java.io.File;
 import java.io.IOException;
+import java.net.URI;
+import java.net.URISyntaxException;
+import java.net.URLEncoder;
 
 public class SingleBookViewController {
 
@@ -42,6 +46,20 @@ public class SingleBookViewController {
         controller.initData(user);
 
         this.rootPane.getChildren().setAll(root);
+    }
+
+    @FXML
+    public void searchInGoogle() {
+        if (Desktop.isDesktopSupported()) {
+            try {
+                String title = selectedItem.getTitle().replace(" ", "+");
+                String author = selectedItem.getAuthor().replace(" ", "+");
+                String google = String.format("https://www.google.bg/search?tbm=bks&q=%s+%s", author, title);
+                Desktop.getDesktop().browse(new URI(google));
+            } catch (IOException | URISyntaxException e) {
+                e.printStackTrace();
+            }
+        }
     }
 
     public void initData(User user, Book selectedItem) {

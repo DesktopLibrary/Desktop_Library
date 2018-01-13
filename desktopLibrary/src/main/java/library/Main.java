@@ -47,7 +47,7 @@ public class Main extends Application {
             closeProgram();
         });
 
-        if(this.roleService.getAllRoles().size()==0){
+        if (this.roleService.getAllRoles().size() == 0) {
             Role roleAdmin = new Role();
             roleAdmin.setName("ROLE_ADMIN");
             this.roleService.saveOrUpdate(roleAdmin);
@@ -56,7 +56,7 @@ public class Main extends Application {
             this.roleService.saveOrUpdate(roleUser);
         }
 
-        if(this.userService.getAllUsers().stream().filter(u->u.getRole().getName().equals("ROLE_ADMIN")).count()==0){
+        if (this.userService.getAllUsers().stream().filter(u -> u.getRole().getName().equals("ROLE_ADMIN")).count() == 0) {
             User user = new User();
             Role role = this.roleService.getRoleByName("ROLE_ADMIN");
             user.setRole(role);
