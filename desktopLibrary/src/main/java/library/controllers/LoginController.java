@@ -11,6 +11,7 @@ import javafx.scene.layout.GridPane;
 import library.entities.User;
 import library.services.api.UserService;
 import library.services.impl.UserServiceImpl;
+import library.utilities.BCryptEncoder;
 
 import java.io.IOException;
 import java.net.URL;
@@ -31,28 +32,30 @@ public class LoginController implements Initializable {
 
     @FXML
     public void loginButtonClicked() throws IOException {
-        if (this.userService.userLogin(this.username.getText(), this.password.getText()) == null) {
-            this.errorLabel.setText("Incorrect username or password!");
-            return;
-        }
-        User user = this.userService.userLogin(this.username.getText(), this.password.getText());
-        FXMLLoader fxmlLoader;
 
-        if (user.getRole().getName().equals("ROLE_ADMIN")) {
-            fxmlLoader = new FXMLLoader(getClass().getResource("/FXML/adminMenu.fxml"));
+        User user = this.userService.getUserByUsername(this.username.getText());
+        if (user != null && BCryptEncoder.checkPass(this.password.getText(), user.getPassword())) {
+            FXMLLoader fxmlLoader;
+
+            if (user.getRole().getName().equals("ROLE_ADMIN")) {
+                fxmlLoader = new FXMLLoader(getClass().getResource("/FXML/adminMenu.fxml"));
+                AnchorPane root = fxmlLoader.load();
+                AdminMenuController controller = new AdminMenuController();
+                controller.initData(user);
+                this.rootPane.getChildren().setAll(root);
+                return;
+            }
+
+            fxmlLoader = new FXMLLoader(getClass().getResource("/FXML/menu.fxml"));
             AnchorPane root = fxmlLoader.load();
-            AdminMenuController controller = new AdminMenuController();
+            MenuController controller = fxmlLoader.<MenuController>getController();
             controller.initData(user);
+
             this.rootPane.getChildren().setAll(root);
-            return;
         }
 
-        fxmlLoader = new FXMLLoader(getClass().getResource("/FXML/menu.fxml"));
-        AnchorPane root = fxmlLoader.load();
-        MenuController controller = fxmlLoader.<MenuController>getController();
-        controller.initData(user);
-
-        this.rootPane.getChildren().setAll(root);
+        this.errorLabel.setText("Wrong username or password!");
+        return;
     }
 
     @FXML

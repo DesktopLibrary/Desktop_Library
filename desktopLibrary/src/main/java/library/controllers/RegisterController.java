@@ -14,6 +14,7 @@ import library.services.api.RoleService;
 import library.services.api.UserService;
 import library.services.impl.RoleServiceImpl;
 import library.services.impl.UserServiceImpl;
+import library.utilities.BCryptEncoder;
 
 import java.io.IOException;
 import java.net.URL;
@@ -64,7 +65,7 @@ public class RegisterController implements Initializable {
             return;
         }
 
-        User user = new User(this.usernameField.getText(), this.passwordField.getText(), this.emailField.getText());
+        User user = new User(this.usernameField.getText(), BCryptEncoder.hashPassword(this.passwordField.getText()), this.emailField.getText());
         Role role = this.roleService.getRoleByName("ROLE_USER");
         user.setRole(role);
         this.userService.saveOrUpdate(user);

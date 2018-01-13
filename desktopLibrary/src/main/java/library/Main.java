@@ -13,6 +13,7 @@ import library.services.api.RoleService;
 import library.services.api.UserService;
 import library.services.impl.RoleServiceImpl;
 import library.services.impl.UserServiceImpl;
+import library.utilities.BCryptEncoder;
 import library.utilities.ConfirmBox;
 
 import javax.persistence.EntityManager;
@@ -61,7 +62,7 @@ public class Main extends Application {
             Role role = this.roleService.getRoleByName("ROLE_ADMIN");
             user.setRole(role);
             user.setEmail("admin@admin.com");
-            user.setPassword("admin");
+            user.setPassword(BCryptEncoder.hashPassword("admin"));
             user.setUsername("admin");
             this.userService.saveOrUpdate(user);
         }
