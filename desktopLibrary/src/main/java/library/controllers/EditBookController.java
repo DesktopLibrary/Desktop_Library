@@ -12,6 +12,7 @@ import library.entities.Book;
 import library.entities.User;
 import library.services.api.BookService;
 import library.services.impl.BookServiceImpl;
+import library.utilities.LoaderProvider;
 import library.utilities.ImageUpload;
 
 import java.io.File;
@@ -56,29 +57,29 @@ public class EditBookController implements Initializable {
         String authorString = this.authorField.getText();
         String summaryString = this.summaryField.getText();
         if (!titleString.equals("")) {
-            book.setTitle(titleString);
+            this.book.setTitle(titleString);
         } else {
-            errorLabel.setText("Book title cannot be empty!");
+            this.errorLabel.setText("Book title cannot be empty!");
             return;
         }
 
         if (!authorString.equals("")) {
-            book.setAuthor(authorString);
+            this.book.setAuthor(authorString);
         } else {
-            errorLabel.setText("Book author cannot be empty!");
+            this.errorLabel.setText("Book author cannot be empty!");
             return;
         }
 
         if (summaryString != null) {
-            book.setSummary(summaryString);
+            this.book.setSummary(summaryString);
         }
 
         this.bookService.saveOrUpdate(book);
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/FXML/userBooks.fxml"));
+        FXMLLoader fxmlLoader = LoaderProvider.get();
+        fxmlLoader.setLocation(getClass().getResource("/FXML/userBooks.fxml"));
         AnchorPane root = fxmlLoader.load();
         UserBooksController controller = fxmlLoader.<UserBooksController>getController();
         controller.initData(this.user);
-
         this.rootPane.getChildren().setAll(root);
     }
 
@@ -95,17 +96,17 @@ public class EditBookController implements Initializable {
     public void initData(User user, Book book){
         this.user = user;
         this.book = book;
-        titleField.setText(book.getTitle());
-        authorField.setText(book.getAuthor());
-        summaryField.setText(book.getSummary());
+        this.titleField.setText(book.getTitle());
+        this.authorField.setText(book.getAuthor());
+        this.summaryField.setText(book.getSummary());
     }
 
     private void backToMyBooks() throws IOException {
-        FXMLLoader booksLoader = new FXMLLoader(getClass().getResource("/FXML/userBooks.fxml"));
-        AnchorPane root = booksLoader.load();
-        UserBooksController controller = booksLoader.<UserBooksController>getController();
-        controller.initData(user);
-
+        FXMLLoader fxmlLoader = LoaderProvider.get();
+        fxmlLoader.setLocation(getClass().getResource("/FXML/userBooks.fxml"));
+        AnchorPane root = fxmlLoader.load();
+        UserBooksController controller = fxmlLoader.<UserBooksController>getController();
+        controller.initData(this.user);
         this.rootPane.getChildren().setAll(root);
     }
 }

@@ -1,39 +1,29 @@
-package library.controllers;
+package library.controllers.admin;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.control.Button;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import library.entities.User;
-import library.services.api.BookService;
-import library.services.api.UserService;
+import library.utilities.LoaderProvider;
 
 import java.io.IOException;
 
 public class AdminMenuController {
 
-    @FXML
-    private Button allUsersButton;
+
     @FXML
     private AnchorPane anchorPane;
-    @FXML
-    private Button allBooksButton;
-    @FXML
-    private Button logoutButton;
 
-    private UserService userService;
-    private BookService bookService;
     private User user;
 
     @FXML
     private void allUsersClicked() throws IOException {
-        FXMLLoader usersLoader = new FXMLLoader(getClass().getResource("/FXML/allUsersView.fxml"));
-
-        AnchorPane root = usersLoader.load();
-        ViewAllUsersAdminController controller = usersLoader.<ViewAllUsersAdminController>getController();
-        controller.initData(user);
-
+        FXMLLoader fxmlLoader = LoaderProvider.get();
+        fxmlLoader.setLocation(getClass().getResource("/FXML/admin/allUsersView.fxml"));
+        AnchorPane root = fxmlLoader.load();
+        ViewAllUsersAdminController controller = fxmlLoader.<ViewAllUsersAdminController>getController();
+        controller.initData(this.user);
         this.anchorPane.getChildren().setAll(root);
     }
 

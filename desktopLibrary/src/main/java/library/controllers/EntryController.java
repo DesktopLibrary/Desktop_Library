@@ -5,9 +5,11 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 
+
 import java.io.IOException;
 
 public class EntryController {
+
 
     @FXML
     private GridPane rootPane;
@@ -23,4 +25,5 @@ public class EntryController {
         AnchorPane registerScene = FXMLLoader.load(getClass().getResource("/FXML/register.fxml"));
         this.rootPane.getChildren().setAll(registerScene);
     }
+
 }

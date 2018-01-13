@@ -10,8 +10,9 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import library.entities.User;
 import library.services.api.UserService;
-import library.services.impl.UserServiceImpl;
 import library.utilities.BCryptEncoder;
+import library.utilities.LoaderProvider;
+import library.utilities.UserServiceInstance;
 
 import java.io.IOException;
 import java.net.URL;
@@ -41,7 +42,7 @@ public class EditProfileController implements Initializable {
         if (!emailString.equals("")) {
             this.user.setEmail(emailString);
         } else {
-            errorLabel.setText("Email field cannot be empty!");
+            this.errorLabel.setText("Email field cannot be empty!");
             return;
         }
 
@@ -50,27 +51,28 @@ public class EditProfileController implements Initializable {
         }
 
         this.userService.saveOrUpdate(this.user);
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/FXML/menu.fxml"));
+
+        FXMLLoader fxmlLoader = LoaderProvider.get();
+        fxmlLoader.setLocation(getClass().getResource("/FXML/menu.fxml"));
         AnchorPane root = fxmlLoader.load();
         MenuController controller = fxmlLoader.<MenuController>getController();
         controller.initData(this.user);
-
         this.rootPane.getChildren().setAll(root);
     }
 
     @FXML
     private void backButtonClicked() throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/FXML/menu.fxml"));
+        FXMLLoader fxmlLoader = LoaderProvider.get();
+        fxmlLoader.setLocation(getClass().getResource("/FXML/menu.fxml"));
         AnchorPane root = fxmlLoader.load();
         MenuController controller = fxmlLoader.<MenuController>getController();
         controller.initData(this.user);
-
         this.rootPane.getChildren().setAll(root);
     }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        this.userService = new UserServiceImpl();
+        this.userService = UserServiceInstance.getInstance();
     }
 
     public void initData(User user) {

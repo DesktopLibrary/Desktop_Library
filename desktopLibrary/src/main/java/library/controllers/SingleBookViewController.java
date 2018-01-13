@@ -9,6 +9,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import library.entities.Book;
 import library.entities.User;
+import library.utilities.LoaderProvider;
 
 import java.awt.*;
 import java.io.File;
@@ -33,17 +34,12 @@ public class SingleBookViewController {
     private Book selectedItem;
 
     @FXML
-    void initialize() {
-
-    }
-
-    @FXML
     public void backToMainMenuClicked() throws IOException {
-        FXMLLoader booksLoader = new FXMLLoader(getClass().getResource("/FXML/userBooks.fxml"));
-        AnchorPane root = booksLoader.load();
-        UserBooksController controller = booksLoader.<UserBooksController>getController();
-        controller.initData(user);
-
+        FXMLLoader fxmlLoader = LoaderProvider.get();
+        fxmlLoader.setLocation(getClass().getResource("/FXML/userBooks.fxml"));
+        AnchorPane root = fxmlLoader.load();
+        UserBooksController controller = fxmlLoader.<UserBooksController>getController();
+        controller.initData(this.user);
         this.rootPane.getChildren().setAll(root);
     }
 
@@ -51,8 +47,8 @@ public class SingleBookViewController {
     public void searchInGoogle() {
         if (Desktop.isDesktopSupported()) {
             try {
-                String title = selectedItem.getTitle().replace(" ", "+");
-                String author = selectedItem.getAuthor().replace(" ", "+");
+                String title = this.selectedItem.getTitle().replace(" ", "+");
+                String author = this.selectedItem.getAuthor().replace(" ", "+");
                 String google = String.format("https://www.google.bg/search?tbm=bks&q=%s+%s", author, title);
                 Desktop.getDesktop().browse(new URI(google));
             } catch (IOException | URISyntaxException e) {
@@ -64,24 +60,24 @@ public class SingleBookViewController {
     public void initData(User user, Book selectedItem) {
         this.user = user;
         this.selectedItem = selectedItem;
-        titleTextField.setEditable(false);
-        titleTextField.setMouseTransparent(true);
-        titleTextField.setFocusTraversable(false);
-        titleTextField.setText(selectedItem.getTitle());
-        authorTextField.setEditable(false);
-        authorTextField.setMouseTransparent(true);
-        authorTextField.setFocusTraversable(false);
-        authorTextField.setText(selectedItem.getAuthor());
-        summaryTextField.setEditable(false);
-        summaryTextField.setFocusTraversable(false);
-        summaryTextField.setText(selectedItem.getSummary());
+        this.titleTextField.setEditable(false);
+        this.titleTextField.setMouseTransparent(true);
+        this.titleTextField.setFocusTraversable(false);
+        this.titleTextField.setText(selectedItem.getTitle());
+        this.authorTextField.setEditable(false);
+        this.authorTextField.setMouseTransparent(true);
+        this.authorTextField.setFocusTraversable(false);
+        this.authorTextField.setText(selectedItem.getAuthor());
+        this.summaryTextField.setEditable(false);
+        this.summaryTextField.setFocusTraversable(false);
+        this.summaryTextField.setText(selectedItem.getSummary());
         String imagePath = System.getProperty("user.dir") + "\\src\\main\\resources\\book_images\\";
         File file = new File(imagePath + "no-image.jpg");
         if (selectedItem.getPicture() != null) {
             file = new File(imagePath + selectedItem.getPicture());
         }
         Image image = new Image(file.toURI().toString());
-        pictureSpace.setImage(image);
+        this.pictureSpace.setImage(image);
     }
 }
 

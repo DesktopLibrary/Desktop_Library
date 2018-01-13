@@ -11,7 +11,8 @@ import javafx.scene.layout.AnchorPane;
 import library.entities.Book;
 import library.entities.User;
 import library.services.api.BookService;
-import library.services.impl.BookServiceImpl;
+import library.utilities.BookServiceInstance;
+import library.utilities.LoaderProvider;
 import library.utilities.ImageUpload;
 
 import java.io.IOException;
@@ -39,29 +40,29 @@ public class AddBookController implements Initializable {
 
     @FXML
     public void submitButtonClicked() throws IOException {
-        String titleString = title.getText();
-        String authorString = author.getText();
-        String summaryString = summary.getText();
+        String titleString = this.title.getText();
+        String authorString = this.author.getText();
+        String summaryString = this.summary.getText();
 
         if (!titleString.equals("")) {
-            book.setTitle(titleString);
+            this.book.setTitle(titleString);
         } else {
             errorLabel.setText("Please provide book title");
             return;
         }
 
         if (!authorString.equals("")) {
-            book.setAuthor(authorString);
+            this.book.setAuthor(authorString);
         } else {
-            errorLabel.setText("Please provide author name");
+            this.errorLabel.setText("Please provide author name");
             return;
         }
 
         if (summaryString != null) {
-            book.setSummary(summaryString);
+            this.book.setSummary(summaryString);
         }
 
-        book.setUser(user);
+        this.book.setUser(this.user);
 
         this.bookService.saveOrUpdate(this.book);
         backToMenu();
@@ -74,7 +75,7 @@ public class AddBookController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        this.bookService = new BookServiceImpl();
+        this.bookService = BookServiceInstance.getInstance();
         this.book = new Book();
     }
 
@@ -95,11 +96,11 @@ public class AddBookController implements Initializable {
     }
 
     private void backToMenu() throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/FXML/menu.fxml"));
+        FXMLLoader fxmlLoader = LoaderProvider.get();
+        fxmlLoader.setLocation(getClass().getResource("/FXML/menu.fxml"));
         AnchorPane root = fxmlLoader.load();
         MenuController controller = fxmlLoader.<MenuController>getController();
-        controller.initData(user);
-
+        controller.initData(this.user);
         this.rootPane.getChildren().setAll(root);
     }
 }

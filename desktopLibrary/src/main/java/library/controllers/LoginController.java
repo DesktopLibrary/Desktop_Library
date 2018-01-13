@@ -8,10 +8,12 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
+import library.controllers.admin.AdminMenuController;
 import library.entities.User;
 import library.services.api.UserService;
-import library.services.impl.UserServiceImpl;
 import library.utilities.BCryptEncoder;
+import library.utilities.LoaderProvider;
+import library.utilities.UserServiceInstance;
 
 import java.io.IOException;
 import java.net.URL;
@@ -35,18 +37,18 @@ public class LoginController implements Initializable {
 
         User user = this.userService.getUserByUsername(this.username.getText());
         if (user != null && BCryptEncoder.checkPass(this.password.getText(), user.getPassword())) {
-            FXMLLoader fxmlLoader;
+            FXMLLoader fxmlLoader = LoaderProvider.get();
 
             if (user.getRole().getName().equals("ROLE_ADMIN")) {
-                fxmlLoader = new FXMLLoader(getClass().getResource("/FXML/adminMenu.fxml"));
+                fxmlLoader.setLocation(getClass().getResource("/FXML/admin/adminMenu.fxml"));
                 AnchorPane root = fxmlLoader.load();
-                AdminMenuController controller = new AdminMenuController();
+                AdminMenuController controller = fxmlLoader.<AdminMenuController>getController();
                 controller.initData(user);
                 this.rootPane.getChildren().setAll(root);
                 return;
             }
 
-            fxmlLoader = new FXMLLoader(getClass().getResource("/FXML/menu.fxml"));
+            fxmlLoader.setLocation(getClass().getResource("/FXML/menu.fxml"));
             AnchorPane root = fxmlLoader.load();
             MenuController controller = fxmlLoader.<MenuController>getController();
             controller.initData(user);
@@ -66,6 +68,7 @@ public class LoginController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        this.userService = new UserServiceImpl();
+        this.userService = UserServiceInstance.getInstance();
     }
+
 }

@@ -13,14 +13,14 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="anchorPane" prefHeight="400.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="library.controllers.ViewAllUsersAdminController">
+<AnchorPane fx:id="anchorPane" prefHeight="400.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="library.controllers.admin.ViewAllUsersAdminController">
     <children>
-        <Button fx:id="moreInfoButton" layoutX="14.0" layoutY="361.0" mnemonicParsing="false" onAction="#moreInfoClicked" prefHeight="30.0" prefWidth="96.0" text="More Info">
+        <Button layoutX="14.0" layoutY="361.0" mnemonicParsing="false" onAction="#moreInfoClicked" prefHeight="30.0" prefWidth="96.0" text="More Info">
             <font>
                 <Font name="System Bold" size="14.0" />
             </font>
         </Button>
-        <Button fx:id="deleteButton" layoutX="120.0" layoutY="361.0" mnemonicParsing="false" onAction="#deleteButtonClicked" prefHeight="25.0" prefWidth="67.0" text="Delete">
+        <Button layoutX="120.0" layoutY="361.0" mnemonicParsing="false" onAction="#deleteButtonClicked" prefHeight="25.0" prefWidth="67.0" text="Delete">
             <font>
                 <Font name="System Bold" size="14.0" />
             </font>
@@ -44,7 +44,7 @@
                 <Font name="System Bold" size="14.0" />
             </font>
         </Label>
-        <Button fx:id="backButton" layoutX="338.0" layoutY="361.0" mnemonicParsing="false" onAction="#backToMainMenuClicked" prefHeight="25.0" prefWidth="49.0" text="Back">
+        <Button layoutX="338.0" layoutY="361.0" mnemonicParsing="false" onAction="#backToMainMenuClicked" prefHeight="25.0" prefWidth="49.0" text="Back">
             <font>
                 <Font name="System Italic" size="14.0" />
             </font>

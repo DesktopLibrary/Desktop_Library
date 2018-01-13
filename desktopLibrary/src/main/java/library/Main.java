@@ -11,10 +11,7 @@ import library.entities.Role;
 import library.entities.User;
 import library.services.api.RoleService;
 import library.services.api.UserService;
-import library.services.impl.RoleServiceImpl;
-import library.services.impl.UserServiceImpl;
-import library.utilities.BCryptEncoder;
-import library.utilities.ConfirmBox;
+import library.utilities.*;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -26,6 +23,7 @@ public class Main extends Application {
     private Stage primaryStage;
     private RoleService roleService;
     private UserService userService;
+    private FXMLLoader fxmlLoader;
 
     public static void main(String[] args) {
         @SuppressWarnings("unused")
@@ -36,10 +34,22 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-        this.roleService = new RoleServiceImpl();
-        this.userService = new UserServiceImpl();
+        this.roleService = RoleServiceInstance.getInstance();
+        this.userService = UserServiceInstance.getInstance();
+        this.fxmlLoader  = LoaderProvider.get();
+
+        if (this.roleService.getAllRoles().size() == 0) {
+            seedRolesInDB();
+        }
+
+        if (this.userService.getAllUsers().stream().filter(u -> u.getRole().getName().equals("ROLE_ADMIN")).count() == 0) {
+            seedAdminInDB();
+        }
+
+
         Parent root = FXMLLoader.load(getClass().getResource("/FXML/entry.fxml"));
         root.setFocusTraversable(true);
+        fxmlLoader.setRoot(root);
         this.primaryStage = primaryStage;
         primaryStage.getIcons().add(new Image("iconsAndWallpapers/icon.png"));
         primaryStage.setTitle("DesktopLibrary");
@@ -48,26 +58,27 @@ public class Main extends Application {
             closeProgram();
         });
 
-        if (this.roleService.getAllRoles().size() == 0) {
-            Role roleAdmin = new Role();
-            roleAdmin.setName("ROLE_ADMIN");
-            this.roleService.saveOrUpdate(roleAdmin);
-            Role roleUser = new Role();
-            roleUser.setName("ROLE_USER");
-            this.roleService.saveOrUpdate(roleUser);
-        }
-
-        if (this.userService.getAllUsers().stream().filter(u -> u.getRole().getName().equals("ROLE_ADMIN")).count() == 0) {
-            User user = new User();
-            Role role = this.roleService.getRoleByName("ROLE_ADMIN");
-            user.setRole(role);
-            user.setEmail("admin@admin.com");
-            user.setPassword(BCryptEncoder.hashPassword("admin"));
-            user.setUsername("admin");
-            this.userService.saveOrUpdate(user);
-        }
         primaryStage.setScene(new Scene(root, 400, 400));
         primaryStage.show();
+    }
+
+    private void seedAdminInDB() {
+        User user = new User();
+        Role role = this.roleService.getRoleByName("ROLE_ADMIN");
+        user.setRole(role);
+        user.setEmail("admin@admin.com");
+        user.setPassword(BCryptEncoder.hashPassword("admin"));
+        user.setUsername("admin");
+        this.userService.saveOrUpdate(user);
+    }
+
+    private void seedRolesInDB() {
+        Role roleAdmin = new Role();
+        roleAdmin.setName("ROLE_ADMIN");
+        this.roleService.saveOrUpdate(roleAdmin);
+        Role roleUser = new Role();
+        roleUser.setName("ROLE_USER");
+        this.roleService.saveOrUpdate(roleUser);
     }
 
     public void closeProgram() {

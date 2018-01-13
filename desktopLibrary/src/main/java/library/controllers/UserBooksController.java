@@ -11,10 +11,9 @@ import javafx.scene.layout.AnchorPane;
 import library.entities.Book;
 import library.entities.User;
 import library.services.api.BookService;
-import library.services.api.UserService;
-import library.services.impl.BookServiceImpl;
-import library.services.impl.UserServiceImpl;
+import library.utilities.BookServiceInstance;
 import library.utilities.ConfirmBox;
+import library.utilities.LoaderProvider;
 
 import java.io.IOException;
 import java.net.URL;
@@ -31,27 +30,26 @@ public class UserBooksController implements Initializable {
     private AnchorPane rootPane;
 
     private User user;
-    private UserService userService;
     private BookService bookService;
 
 
     @FXML
     void deleteButtonClicked() {
-        Book selectedItem = table.getSelectionModel().getSelectedItem();
+        Book selectedItem = this.table.getSelectionModel().getSelectedItem();
         if (selectedItem != null) {
             Boolean confirmation = ConfirmBox.display("DeleteBook", "Would you like to delete this book?");
             if (confirmation) {
-                table.getItems().remove(selectedItem);
+                this.table.getItems().remove(selectedItem);
                 this.bookService.deleteBookById(selectedItem);
             }
         } else {
-            errorLabel.setText("Please select a book.");
+            this.errorLabel.setText("Please select a book!");
         }
     }
 
     @FXML
     void editButtonClicked() throws IOException {
-        Book selectedItem = table.getSelectionModel().getSelectedItem();
+        Book selectedItem = this.table.getSelectionModel().getSelectedItem();
         if (selectedItem != null) {
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/FXML/editBook.fxml"));
 
@@ -61,40 +59,39 @@ public class UserBooksController implements Initializable {
 
             this.rootPane.getChildren().setAll(root);
         } else {
-            this.errorLabel.setText("Please select book first!");
+            this.errorLabel.setText("Please select a book!");
         }
     }
 
     @FXML
     void backToMainMenuClicked() throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/FXML/menu.fxml"));
+        FXMLLoader fxmlLoader = LoaderProvider.get();
+        fxmlLoader.setLocation(getClass().getResource("/FXML/menu.fxml"));
         AnchorPane root = fxmlLoader.load();
         MenuController controller = fxmlLoader.<MenuController>getController();
-        controller.initData(user);
-
+        controller.initData(this.user);
         this.rootPane.getChildren().setAll(root);
     }
 
     @FXML
     void descriptionButtonClicked() throws IOException {
-        Book selectedItem = table.getSelectionModel().getSelectedItem();
+        Book selectedItem = this.table.getSelectionModel().getSelectedItem();
         if (selectedItem == null) {
-            this.errorLabel.setText("Please select a book");
+            this.errorLabel.setText("Please select a book!");
             return;
         }
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/FXML/singleBookView.fxml"));
 
+        FXMLLoader fxmlLoader = LoaderProvider.get();
+        fxmlLoader.setLocation(getClass().getResource("/FXML/singleBookView.fxml"));
         AnchorPane root = fxmlLoader.load();
         SingleBookViewController controller = fxmlLoader.<SingleBookViewController>getController();
         controller.initData(this.user, selectedItem);
-
         this.rootPane.getChildren().setAll(root);
     }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        this.bookService = new BookServiceImpl();
-        this.userService = new UserServiceImpl();
+        this.bookService = BookServiceInstance.getInstance();
     }
 
     public void initData(User user) {
