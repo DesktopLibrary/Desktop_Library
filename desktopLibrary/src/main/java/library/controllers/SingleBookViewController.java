@@ -73,7 +73,6 @@ public class SingleBookViewController {
         authorTextField.setFocusTraversable(false);
         authorTextField.setText(selectedItem.getAuthor());
         summaryTextField.setEditable(false);
-        summaryTextField.setMouseTransparent(true);
         summaryTextField.setFocusTraversable(false);
         summaryTextField.setText(selectedItem.getSummary());
         String imagePath = System.getProperty("user.dir") + "\\src\\main\\resources\\book_images\\";
