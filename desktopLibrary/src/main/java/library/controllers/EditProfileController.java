@@ -75,9 +75,8 @@ public class EditProfileController implements Initializable {
         this.userService = new UserServiceImpl();
     }
 
-    public void initData(User user){
+    public void initData(User user) {
         this.user = user;
-
         this.usernameField.setText(this.user.getUsername());
         this.emailField.setText(this.user.getEmail());
         this.passwordField.setText(this.user.getPassword());

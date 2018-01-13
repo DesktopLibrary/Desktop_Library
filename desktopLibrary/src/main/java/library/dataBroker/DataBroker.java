@@ -13,6 +13,7 @@ public interface DataBroker {
     User getUserByEmail(String email);
     User getUserByUsername(String username);
     User userLogin(String username, String password);
+    void deleteUserById(User user);
 
     void saveOrUpdate(Book book);
     List<Book> getAllBooks();

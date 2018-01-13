@@ -13,9 +13,9 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="anchorPane" prefHeight="400.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="library.controllers.viewAllUsersAdminController">
+<AnchorPane fx:id="anchorPane" prefHeight="400.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="library.controllers.ViewAllUsersAdminController">
     <children>
-        <Button fx:id="moreInfoButton" layoutX="14.0" layoutY="361.0" mnemonicParsing="false" onAction="#descriptionButtonClicked" prefHeight="30.0" prefWidth="96.0" text="More Info">
+        <Button fx:id="moreInfoButton" layoutX="14.0" layoutY="361.0" mnemonicParsing="false" onAction="#moreInfoClicked" prefHeight="30.0" prefWidth="96.0" text="More Info">
             <font>
                 <Font name="System Bold" size="14.0" />
             </font>
@@ -27,14 +27,14 @@
         </Button>
         <TableView fx:id="table" layoutY="33.0" prefHeight="313.0" prefWidth="401.0">
             <columns>
-                <TableColumn fx:id="usernameField" prefWidth="193.0" text="Username">
+                <TableColumn prefWidth="193.0" text="Username">
                     <cellValueFactory>
-                        <PropertyValueFactory property="author" />
+                        <PropertyValueFactory property="username" />
                     </cellValueFactory>
                 </TableColumn>
-                <TableColumn fx:id="emailField" prefWidth="193.0" text="Email">
+                <TableColumn prefWidth="193.0" text="Email">
                     <cellValueFactory>
-                        <PropertyValueFactory property="title" />
+                        <PropertyValueFactory property="email" />
                     </cellValueFactory>
                 </TableColumn>
             </columns>

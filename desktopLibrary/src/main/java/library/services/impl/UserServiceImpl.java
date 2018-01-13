@@ -45,4 +45,9 @@ public class UserServiceImpl implements UserService {
     public User userLogin(String username, String password) {
         return this.broker.userLogin(username,password);
     }
+
+    @Override
+    public void deleteUserById(User user) {
+        this.broker.deleteUserById(user);
+    }
 }

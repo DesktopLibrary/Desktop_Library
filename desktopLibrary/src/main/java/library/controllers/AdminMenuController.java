@@ -1,6 +1,5 @@
 package library.controllers;
 
-
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
@@ -27,21 +26,15 @@ public class AdminMenuController {
     private BookService bookService;
     private User user;
 
-
     @FXML
     private void allUsersClicked() throws IOException {
         FXMLLoader usersLoader = new FXMLLoader(getClass().getResource("/FXML/allUsersView.fxml"));
 
         AnchorPane root = usersLoader.load();
-        viewAllUsersAdminController controller = usersLoader.<viewAllUsersAdminController>getController();
+        ViewAllUsersAdminController controller = usersLoader.<ViewAllUsersAdminController>getController();
         controller.initData(user);
 
         this.anchorPane.getChildren().setAll(root);
-    }
-
-    @FXML
-    private void allBooksClicked(){
-
     }
 
     @FXML

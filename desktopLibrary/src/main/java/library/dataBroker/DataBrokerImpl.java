@@ -75,6 +75,13 @@ public class DataBrokerImpl implements DataBroker {
     }
 
     @Override
+    public void deleteUserById(User user) {
+        em.getTransaction().begin();
+        em.remove(user);
+        em.getTransaction().commit();
+    }
+
+    @Override
     public void saveOrUpdate(Book book) {
         em.getTransaction().begin();
         em.merge(book);
