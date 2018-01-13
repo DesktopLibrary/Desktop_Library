@@ -136,6 +136,13 @@ public class DataBrokerImpl implements DataBroker {
     }
 
     @Override
+    public void saveOrUpdate(Role role) {
+        em.getTransaction().begin();
+        em.merge(role);
+        em.getTransaction().commit();
+    }
+
+    @Override
     public Role getRoleByName(String roleName) {
         Query selectByRoleName = em.createQuery("SELECT r FROM Role AS r WHERE r.name = :name");
         if (roleName.equals("ROLE_ADMIN") || roleName.equals("ROLE_USER")) {
@@ -158,5 +165,11 @@ public class DataBrokerImpl implements DataBroker {
             return null;
         }
         return roles.get(0);
+    }
+
+    @Override
+    public List<Role> getAllRoles() {
+        List<Role> allRoles  = em.createQuery("SELECT r FROM Role AS r").getResultList();
+        return allRoles;
     }
 }
