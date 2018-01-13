@@ -1,6 +1,7 @@
 package library.dataBroker;
 
 import library.entities.Book;
+import library.entities.Role;
 import library.entities.User;
 
 import javax.persistence.EntityManager;
@@ -132,5 +133,30 @@ public class DataBrokerImpl implements DataBroker {
         em.getTransaction().begin();
         em.remove(book);
         em.getTransaction().commit();
+    }
+
+    @Override
+    public Role getRoleByName(String roleName) {
+        Query selectByRoleName = em.createQuery("SELECT r FROM Role AS r WHERE r.name = :name");
+        if (roleName.equals("ROLE_ADMIN") || roleName.equals("ROLE_USER")) {
+            selectByRoleName.setParameter("name", roleName);
+            List<Role> roles = selectByRoleName.getResultList();
+            if (roles.isEmpty()) {
+                return null;
+            }
+            return roles.get(0);
+        }
+        return null;
+    }
+
+    @Override
+    public Role getRoleById(int id) {
+        Query selectByRoleId = em.createQuery("SELECT r FROM Role AS r WHERE r.id = :id");
+        selectByRoleId.setParameter("id", id);
+        List<Role> roles = selectByRoleId.getResultList();
+        if (roles.isEmpty()) {
+            return null;
+        }
+        return roles.get(0);
     }
 }

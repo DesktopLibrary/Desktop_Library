@@ -13,6 +13,7 @@ public class User {
     private String email;
 
     private Set<Book> books;
+    private Role role;
 
     public User() {
     }
@@ -68,5 +69,15 @@ public class User {
 
     public void setBooks(Set<Book> books) {
         this.books = books;
+    }
+
+    @OneToOne(optional = false)
+    @JoinColumn(name = "role_id", referencedColumnName = "role_id")
+    public Role getRole() {
+        return role;
+    }
+
+    public void setRole(Role role) {
+        this.role = role;
     }
 }

@@ -1,6 +1,7 @@
 package library.dataBroker;
 
 import library.entities.Book;
+import library.entities.Role;
 import library.entities.User;
 
 import java.util.List;
@@ -20,4 +21,7 @@ public interface DataBroker {
     Book getBookByTitle(String title);
     Book getBookByAuthor(String author);
     void deleteBookById(Book book);
+
+    Role getRoleByName(String roleName);
+    Role getRoleById(int id);
 }
