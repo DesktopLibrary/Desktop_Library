@@ -75,8 +75,11 @@ public class DataBrokerImpl implements DataBroker {
     }
 
     @Override
-    public void deleteUserById(User user) {
+    public void deleteUserById(User user, List<Book> books) {
         em.getTransaction().begin();
+        for (Book book : books) {
+            em.remove(book);
+        }
         em.remove(user);
         em.getTransaction().commit();
     }

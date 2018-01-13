@@ -1,8 +1,8 @@
 package library.services.impl;
 
 import library.dataBroker.DataBroker;
-
 import library.dataBroker.DataBrokerImpl;
+import library.entities.Book;
 import library.entities.User;
 import library.services.api.UserService;
 
@@ -47,7 +47,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void deleteUserById(User user) {
-        this.broker.deleteUserById(user);
+    public void deleteUserById(User user, List<Book> books) {
+        this.broker.deleteUserById(user, books);
     }
 }

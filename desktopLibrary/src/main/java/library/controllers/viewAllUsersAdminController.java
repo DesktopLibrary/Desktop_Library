@@ -11,6 +11,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.layout.AnchorPane;
+import library.entities.Book;
 import library.entities.User;
 import library.services.api.BookService;
 import library.services.api.UserService;
@@ -59,7 +60,8 @@ public class ViewAllUsersAdminController implements Initializable {
             Boolean confirmation = ConfirmBox.display("DeleteUser", "Would you like to delete this user?");
             if (confirmation) {
                 table.getItems().remove(selectedItem);
-                this.userService.deleteUserById(selectedItem);
+                List<Book> books = this.bookService.getBooksByUserId(selectedItem.getId());
+                this.userService.deleteUserById(selectedItem, books);
             }
         } else {
             errorLabel.setText("Please select a user.");
