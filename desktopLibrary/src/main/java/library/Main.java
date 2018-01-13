@@ -46,6 +46,7 @@ public class Main extends Application {
             e.consume();
             closeProgram();
         });
+
         if(this.roleService.getAllRoles().size()==0){
             Role roleAdmin = new Role();
             roleAdmin.setName("ROLE_ADMIN");
@@ -54,7 +55,6 @@ public class Main extends Application {
             roleUser.setName("ROLE_USER");
             this.roleService.saveOrUpdate(roleUser);
         }
-
 
         if(this.userService.getAllUsers().stream().filter(u->u.getRole().getName().equals("ROLE_ADMIN")).count()==0){
             User user = new User();

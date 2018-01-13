@@ -18,8 +18,6 @@ import java.util.ResourceBundle;
 
 public class LoginController implements Initializable {
 
-    private UserService userService;
-
     @FXML
     private AnchorPane rootPane;
     @FXML
@@ -29,16 +27,27 @@ public class LoginController implements Initializable {
     @FXML
     private PasswordField password;
 
+    private UserService userService;
+
     @FXML
     public void loginButtonClicked() throws IOException {
         if (this.userService.userLogin(this.username.getText(), this.password.getText()) == null) {
             this.errorLabel.setText("Incorrect username or password!");
             return;
         }
-
         User user = this.userService.userLogin(this.username.getText(), this.password.getText());
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/FXML/menu.fxml"));
+        FXMLLoader fxmlLoader;
 
+        if (user.getRole().getName().equals("ROLE_ADMIN")) {
+            fxmlLoader = new FXMLLoader(getClass().getResource("/FXML/adminMenu.fxml"));
+            AnchorPane root = fxmlLoader.load();
+            AdminMenuController controller = new AdminMenuController();
+            controller.initData(user);
+            this.rootPane.getChildren().setAll(root);
+            return;
+        }
+
+        fxmlLoader = new FXMLLoader(getClass().getResource("/FXML/menu.fxml"));
         AnchorPane root = fxmlLoader.load();
         MenuController controller = fxmlLoader.<MenuController>getController();
         controller.initData(user);

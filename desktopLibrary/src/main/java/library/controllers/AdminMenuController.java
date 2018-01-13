@@ -1,19 +1,19 @@
 package library.controllers;
 
 
-import javafx.fxml.FXMLLoader;
-import javafx.scene.layout.AnchorPane;
 import javafx.fxml.FXML;
-import javafx.scene.layout.GridPane;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.GridPane;
 import library.entities.User;
 import library.services.api.BookService;
 import library.services.api.UserService;
 
-import java.awt.*;
 import java.io.IOException;
 
 public class AdminMenuController {
+
     @FXML
     private Button allUsersButton;
     @FXML
@@ -44,4 +44,7 @@ public class AdminMenuController {
         this.anchorPane.getChildren().setAll(entryScene);
     }
 
+    public void initData(User user) {
+        this.user = user;
+    }
 }
