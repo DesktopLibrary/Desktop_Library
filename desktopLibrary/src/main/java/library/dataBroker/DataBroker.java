@@ -23,7 +23,6 @@ public interface DataBroker {
     Book getBookByAuthor(String author);
     void deleteBookById(Book book);
 
-
     void saveOrUpdate(Role role);
     Role getRoleByName(String roleName);
     Role getRoleById(int id);
