@@ -7,6 +7,12 @@ import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
 import library.dataBroker.Manager;
+import library.entities.Role;
+import library.entities.User;
+import library.services.api.RoleService;
+import library.services.api.UserService;
+import library.services.impl.RoleServiceImpl;
+import library.services.impl.UserServiceImpl;
 import library.utilities.ConfirmBox;
 
 import javax.persistence.EntityManager;
@@ -17,6 +23,8 @@ import java.util.logging.Level;
 public class Main extends Application {
 
     private Stage primaryStage;
+    private RoleService roleService;
+    private UserService userService;
 
     public static void main(String[] args) {
         @SuppressWarnings("unused")
@@ -27,6 +35,8 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
+        this.roleService = new RoleServiceImpl();
+        this.userService = new UserServiceImpl();
         Parent root = FXMLLoader.load(getClass().getResource("/FXML/entry.fxml"));
         root.setFocusTraversable(true);
         this.primaryStage = primaryStage;
@@ -36,6 +46,15 @@ public class Main extends Application {
             e.consume();
             closeProgram();
         });
+        if(this.userService.getAllUsers().stream().filter(u->u.getRole().getName().equals("ROLE_ADMIN")).count()==0){
+            User user = new User();
+            Role role = this.roleService.getRoleByName("ROLE_ADMIN");
+            user.setRole(role);
+            user.setEmail("admin@admin.com");
+            user.setPassword("admin");
+            user.setUsername("admin");
+            this.userService.saveOrUpdate(user);
+        }
         primaryStage.setScene(new Scene(root, 400, 400));
         primaryStage.show();
     }

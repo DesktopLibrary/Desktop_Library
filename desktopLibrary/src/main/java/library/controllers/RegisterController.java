@@ -8,8 +8,11 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
+import library.entities.Role;
 import library.entities.User;
+import library.services.api.RoleService;
 import library.services.api.UserService;
+import library.services.impl.RoleServiceImpl;
 import library.services.impl.UserServiceImpl;
 
 import java.io.IOException;
@@ -32,6 +35,7 @@ public class RegisterController implements Initializable {
     private TextField emailField;
 
     private UserService userService;
+    private RoleService roleService;
 
     @FXML
     public void regButtonClicked() throws IOException {
@@ -61,7 +65,8 @@ public class RegisterController implements Initializable {
         }
 
         User user = new User(this.usernameField.getText(), this.passwordField.getText(), this.emailField.getText());
-
+        Role role = this.roleService.getRoleByName("ROLE_USER");
+        user.setRole(role);
         this.userService.saveOrUpdate(user);
         GridPane entryScene = FXMLLoader.load(getClass().getResource("/FXML/entry.fxml"));
         this.rootPane.getChildren().setAll(entryScene);
@@ -76,5 +81,6 @@ public class RegisterController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         this.userService = new UserServiceImpl();
+        this.roleService = new RoleServiceImpl();
     }
 }
