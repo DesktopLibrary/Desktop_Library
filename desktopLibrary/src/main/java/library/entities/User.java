@@ -71,7 +71,7 @@ public class User {
         this.books = books;
     }
 
-    @OneToOne(optional = false)
+    @ManyToOne(optional = false)
     @JoinColumn(name = "role_id", referencedColumnName = "role_id")
     public Role getRole() {
         return role;
