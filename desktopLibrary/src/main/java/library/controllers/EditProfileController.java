@@ -11,6 +11,7 @@ import javafx.scene.layout.AnchorPane;
 import library.entities.User;
 import library.services.api.UserService;
 import library.services.impl.UserServiceImpl;
+import library.utilities.BCryptEncoder;
 
 import java.io.IOException;
 import java.net.URL;
@@ -45,10 +46,7 @@ public class EditProfileController implements Initializable {
         }
 
         if (!passwordString.equals("")) {
-            this.user.setPassword(passwordString);
-        } else {
-            errorLabel.setText("Password cannot be empty!");
-            return;
+            this.user.setPassword(BCryptEncoder.hashPassword(passwordString));
         }
 
         this.userService.saveOrUpdate(this.user);
@@ -77,8 +75,10 @@ public class EditProfileController implements Initializable {
 
     public void initData(User user) {
         this.user = user;
+        this.usernameField.setEditable(false);
+        this.usernameField.setMouseTransparent(true);
+        this.usernameField.setFocusTraversable(false);
         this.usernameField.setText(this.user.getUsername());
         this.emailField.setText(this.user.getEmail());
-        this.passwordField.setText(this.user.getPassword());
     }
 }
