@@ -23,7 +23,6 @@ public class Main extends Application {
     private Stage primaryStage;
     private RoleService roleService;
     private UserService userService;
-    private FXMLLoader fxmlLoader;
 
     public static void main(String[] args) {
         @SuppressWarnings("unused")
@@ -36,7 +35,6 @@ public class Main extends Application {
     public void start(Stage primaryStage) throws Exception {
         this.roleService = RoleServiceInstance.getInstance();
         this.userService = UserServiceInstance.getInstance();
-        this.fxmlLoader  = LoaderProvider.get();
 
         if (this.roleService.getAllRoles().size() == 0) {
             seedRolesInDB();
@@ -49,7 +47,6 @@ public class Main extends Application {
 
         Parent root = FXMLLoader.load(getClass().getResource("/FXML/entry.fxml"));
         root.setFocusTraversable(true);
-        fxmlLoader.setRoot(root);
         this.primaryStage = primaryStage;
         primaryStage.getIcons().add(new Image("iconsAndWallpapers/icon.png"));
         primaryStage.setTitle("DesktopLibrary");
