@@ -9,12 +9,10 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableView;
 import javafx.scene.layout.AnchorPane;
-import library.entities.Book;
 import library.entities.User;
 import library.services.api.BookService;
 import library.services.api.UserService;
 import library.utilities.BookServiceInstance;
-import library.utilities.ConfirmBox;
 import library.utilities.LoaderProvider;
 import library.utilities.UserServiceInstance;
 
@@ -27,7 +25,7 @@ import java.util.stream.Collectors;
 public class ViewAllUsersAdminController implements Initializable {
 
     @FXML
-    private AnchorPane anchorPane;
+    private AnchorPane rootPane;
     @FXML
     private Label errorLabel;
     @FXML
@@ -38,20 +36,15 @@ public class ViewAllUsersAdminController implements Initializable {
     private BookService bookService;
 
     @FXML
-    void moreInfoClicked() {
-
-    }
-
-    @FXML
-    void deleteButtonClicked() {
+    void moreInfoClicked() throws IOException {
         User selectedItem = this.table.getSelectionModel().getSelectedItem();
         if (selectedItem != null) {
-            Boolean confirmation = ConfirmBox.display("DeleteUser", "Would you like to delete this user?");
-            if (confirmation) {
-                this.table.getItems().remove(selectedItem);
-                List<Book> books = this.bookService.getBooksByUserId(selectedItem.getId());
-                this.userService.deleteUserById(selectedItem, books);
-            }
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/FXML/admin/moreInfo.fxml"));
+            AnchorPane root = fxmlLoader.load();
+            MoreInfoController controller = fxmlLoader.<MoreInfoController>getController();
+            controller.initData(selectedItem);
+
+            this.rootPane.getChildren().setAll(root);
         } else {
             this.errorLabel.setText("Please select a user.");
         }
@@ -64,7 +57,7 @@ public class ViewAllUsersAdminController implements Initializable {
         AnchorPane root = fxmlLoader.load();
         AdminMenuController controller = fxmlLoader.<AdminMenuController>getController();
         controller.initData(this.user);
-        this.anchorPane.getChildren().setAll(root);
+        this.rootPane.getChildren().setAll(root);
     }
 
     public void initData(User user) {
