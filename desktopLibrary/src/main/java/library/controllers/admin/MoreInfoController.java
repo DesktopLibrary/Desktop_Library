@@ -50,7 +50,7 @@ public class MoreInfoController implements Initializable {
                 this.bookService.deleteBookById(selectedItem);
             }
         } else {
-            this.errorLabel.setText("PLease select a book.");
+            this.errorLabel.setText("Please select a book.");
         }
     }
 
@@ -91,7 +91,7 @@ public class MoreInfoController implements Initializable {
         this.emailField.setEditable(false);
         this.emailField.setMouseTransparent(true);
         this.emailField.setFocusTraversable(false);
-        this.emailField.setText(this.user.getUsername());
+        this.emailField.setText(this.user.getEmail());
     }
 
     @Override
